@@ -1,5 +1,5 @@
 #### Pygame graphics
-by hippyclipper
+##### by hippyclipper
 ---
 [Star Field](./src/starfield.py)
 
