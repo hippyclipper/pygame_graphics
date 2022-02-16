@@ -29,11 +29,12 @@ class Circles:
     def __init__(self):
         self.circles = []
         self.numCircles = 30
+        r = 20
         for i in range(self.numCircles):
             degree = int(i/self.numCircles * 360)
             centerX = width//2
             centerY = height//2
-            self.circles.append(Circle(i,i,i))
+            self.circles.append(Circle(centerX,centerY,r))
 
     def draw(self):
         for x in self.circles:
