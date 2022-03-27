@@ -21,6 +21,7 @@ class Circle:
         self.x = x
         self.y = y
         self.r = r
+        
     def draw(self):
         pygame.draw.circle(screen, BLUE, (self.x, self.y), self.r)
         
@@ -28,13 +29,17 @@ class Circles:
     
     def __init__(self):
         self.circles = []
-        self.numCircles = 30
+        self.numCircles = 3
         r = 20
+        
         for i in range(self.numCircles):
-            degree = int(i/self.numCircles * 360)
+            degree = i/self.numCircles * 360
+            radians = math.radians(degree)
             centerX = width//2
             centerY = height//2
-            self.circles.append(Circle(centerX,centerY,r))
+            x = centerX + (math.cos(radians) * 100)          
+            y = centerY + (math.sin(radians) * 100)
+            self.circles.append(Circle(x,y,r))
 
     def draw(self):
         for x in self.circles:
