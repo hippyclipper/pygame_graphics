@@ -28,40 +28,50 @@ class Circle:
         
 class Circles:
     
-    def __init__(self):
-        self.circles = []
-        self.numCircles = 10
-        self.bigRad = 100
-        r = 20
+    def __init__(self, bigRad, num, sRad, scale):
         
+        self.circles = []
+        self.numCircles = num
+        self.bigRad = bigRad
+        self.smallRad = sRad
+        self.middleX = width//2
+        self.middleY = height//2
+        self.counter = 0
+        self.radScale = scale
         for i in range(self.numCircles):
-            degree = i/self.numCircles * 360
-            radians = math.radians(degree)
-            centerX = width//2
-            centerY = height//2
-            x = centerX + (math.cos(radians) * self.bigRad)          
-            y = centerY + (math.sin(radians) * self.bigRad)
-            self.circles.append(Circle(x,y,r, radians))
-            
+            radians = math.radians(i/self.numCircles * 360)
+            x = self.middleX + (math.cos(radians) * self.bigRad)          
+            y = self.middleY + (math.sin(radians) * self.bigRad)
+            self.circles.append(Circle(x,y,self.smallRad, radians))
+
     def update(self):
         for x in self.circles:
             x.rads += .01
-            x.x = width//2 + math.cos(x.rads)*self.bigRad
-            x.y = height//2 + math.sin(x.rads)*self.bigRad
+            x.x = self.middleX + math.cos(x.rads)*self.bigRad
+            x.y = self.middleY + math.sin(x.rads)*self.bigRad
+        self.bigRad += math.sin(self.counter)*5 * self.radScale
+        self.counter += .1
 
     def draw(self):
         for x in self.circles:
             x.draw()
         
-circles = Circles()  
+circles = Circles(150, 7, 20, 1)
+smallHalos = [Circles(30, 7, 10, .5) for x in range(circles.numCircles)]
 while not done:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
             
-    circles.draw()
+    #circles.draw()
     circles.update()
+    for i,x in enumerate(smallHalos):
+        x.middleX = circles.circles[i].x
+        x.middleY = circles.circles[i].y
+        x.update()
+        x.draw()
+    circles.draw()
     pygame.display.flip()
     clock.tick(60)
     screen.fill(BACKGROUND)
