@@ -5,7 +5,7 @@
 
 ![star demo](./img/starfield_gif.gif)
 ---
-[Circles](./src/circls.py)
+[Circles](./src/cirlces.py)
 
 ![circle demo](./img/workingBigCircle.gif)
 ---
