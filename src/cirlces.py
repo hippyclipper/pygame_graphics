@@ -7,7 +7,7 @@ height = width
 RED = (255,0,0)
 BLUE = (0,0,255)
 GREEN = (0,255,0)
-BACKGROUND = (5,5,5)
+BACKGROUND = (68, 17, 81)
 done = False
 pygame.init()
 pygame.mixer.init()
@@ -22,13 +22,14 @@ class Circle:
         self.y = y
         self.r = r
         self.rads = rads
+        self.color = (141, 134, 201)
         
     def draw(self):
-        pygame.draw.circle(screen, BLUE, (self.x, self.y), self.r)
+        pygame.draw.circle(screen, self.color, (self.x, self.y), self.r)
         
 class Circles:
     
-    def __init__(self, bigRad, num, sRad, scale):
+    def __init__(self, bigRad, num, sRad, scale, color=(141, 134, 201)):
         
         self.circles = []
         self.numCircles = num
@@ -38,11 +39,13 @@ class Circles:
         self.middleY = height//2
         self.counter = 0
         self.radScale = scale
+        self.color = color
         for i in range(self.numCircles):
             radians = math.radians(i/self.numCircles * 360)
             x = self.middleX + (math.cos(radians) * self.bigRad)          
             y = self.middleY + (math.sin(radians) * self.bigRad)
             self.circles.append(Circle(x,y,self.smallRad, radians))
+            self.circles[-1].color = self.color
 
     def update(self):
         for x in self.circles:
@@ -57,7 +60,7 @@ class Circles:
             x.draw()
         
 circles = Circles(150, 7, 20, 1)
-smallHalos = [Circles(30, 7, 10, .5) for x in range(circles.numCircles)]
+smallHalos = [Circles(30, 7, 10, .5, (89, 195, 195)) for x in range(circles.numCircles)]
 while not done:
     
     for event in pygame.event.get():
