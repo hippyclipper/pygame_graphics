@@ -14,8 +14,9 @@ RED = (255,0,0)
 BLUE = (0,0,255)
 GREEN = (0,255,0)
 BACKGROUND = (5, 5, 5)
+COLORLIST = [RED, GREEN, BLUE]
 done = False
-
+#colors/
 class Spark:
     
     def __init__(self):
@@ -55,7 +56,7 @@ class Firework:
         self.v = random.randint(10,22)*-1
         self.g = .3
         self.r = 10
-        self.color = BLUE
+        self.color = COLORLIST[random.randint(0,len(COLORLIST)-1)]
         self.exploded = False
         self.explodeV = 5
         self.sparks = [Spark() for x in range(100)]
@@ -65,10 +66,10 @@ class Firework:
 
         if self.v > self.explodeV and not self.exploded:
             self.exploded = True
-            self.color = RED
             for spark in self.sparks:
                 spark.x = self.x
                 spark.y = self.y
+                spark.color = self.color
         if not self.exploded:  
             self.v += self.g
             self.y += self.v
