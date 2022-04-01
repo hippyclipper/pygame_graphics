@@ -53,7 +53,7 @@ class Firework:
     def __init__(self):
         self.x = random.randint(0,width)
         self.y = height
-        self.v = random.randint(10,22)*-1
+        self.v = random.randint(10,20)*-1
         self.g = .3
         self.r = 10
         self.color = COLORLIST[random.randint(0,len(COLORLIST)-1)]
