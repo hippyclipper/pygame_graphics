@@ -10,3 +10,8 @@
 ![circle demo](./img/workingBigCircle.gif)
 ---
 
+---
+
+Fireworks
+
+![circle demo](./img/fireworks.gif)
