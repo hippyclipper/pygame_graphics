@@ -9,9 +9,6 @@
 
 ![circle demo](./img/workingBigCircle.gif)
 ---
-
----
-
-Fireworks
+[Fireworks](./src/fireworks.py)
 
 ![circle demo](./img/fireworks.gif)
