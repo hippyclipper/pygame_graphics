@@ -12,3 +12,7 @@
 [Fireworks](./src/fireworks.py)
 
 ![circle demo](./img/fireworks.gif)
+---
+[Gravity](./src/gravity.py)
+
+![gravity demo](./img/gravityGifDemo.gif)

@@ -33,13 +33,15 @@ class Body:
         self.v = [0,0]
         self.r = r
         self.m = math.pi * r**2 * self.density
-        self.color = RED
+        self.color = (150, 150, 149)
+        self.colorLine = (255, 255, 255)
     
     def update(self):
         self.x += self.v[0]
         self.y += self.v[1]
     
     def draw(self):
+        pygame.draw.circle(screen, self.colorLine, (self.x, self.y), self.r+3)
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.r)
         
         
