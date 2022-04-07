@@ -82,17 +82,33 @@ class Board:
         for x in self.squares:
             for y in x:
                 y.draw()
-        
-board = Board()
+ 
 
-offset = 20
-board.squares[0+offset][0+offset].color = BLACK
-board.squares[1+offset][0+offset].color = BLACK
-board.squares[2+offset][0+offset].color = BLACK
-board.squares[2+offset][1+offset].color = BLACK
-board.squares[1+offset][2+offset].color = BLACK
-# board.squares[21][20].color = BLACK
-# board.squares[31][21].color = BLACK
+ 
+def makeGlider(offset, board):   
+    board.squares[0+offset][0+offset].color = BLACK
+    board.squares[1+offset][0+offset].color = BLACK
+    board.squares[2+offset][0+offset].color = BLACK
+    board.squares[2+offset][1+offset].color = BLACK
+    board.squares[1+offset][2+offset].color = BLACK
+    
+def makeGliderGun(board):
+    gliderGun = ["........................X...........",
+        "......................X.X...........",
+    "............XX......XX............XX",
+    "...........X...X....XX............XX",
+    "XX........X.....X...XX..............",
+    "XX........X...X.XX....X.X...........",
+    "..........X.....X.......X...........",
+    "...........X...X....................",
+    "............XX......................"]
+    for i,line in enumerate(gliderGun):
+        for j,y in enumerate(line):
+            if y == "X":
+                board.squares[j+2][i+1].color = BLACK
+    
+board = Board()
+makeGliderGun(board)
 
 
 while not done:
@@ -108,7 +124,7 @@ while not done:
     pygame.display.flip()
     clock.tick(60)
     screen.fill(BACKGROUND)
-    time.sleep(.5)
+    time.sleep(.1)
 #=============================================================
 pygame.display.quit()
 pygame.quit()    
