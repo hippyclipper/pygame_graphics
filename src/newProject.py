@@ -11,11 +11,11 @@ pygame.mixer.init()
 pygame.font.init()
 screen = pygame.display.set_mode((width,height))
 clock = pygame.time.Clock()
-RED = (255,0,0)
-BLUE = (0,0,255)
+GRAY = (132, 121, 121)
+BLACK = (25, 23, 22)
 GREEN = (0,255,0)
 BACKGROUND = (5, 5, 5)
-COLORLIST = [RED, BLUE]
+COLORLIST = [GRAY, BLACK]
 done = False
 
 class Square:
@@ -26,7 +26,7 @@ class Square:
         self.i = i
         self.j = j
         self.w = w
-        self.color = RED
+        self.color = GRAY
         self.n = 0
 
         
@@ -56,7 +56,7 @@ class Board:
             j = y + side[1]
             if (i < 0 or i >= width//self.sizeSquare) or (j < 0 or j >= height//self.sizeSquare):
                 continue
-            if self.squares[i][j].color == BLUE:
+            if self.squares[i][j].color == BLACK:
                 self.squares[x][y].n += 1
                                 
     def calcNextDoor(self):
@@ -67,12 +67,12 @@ class Board:
     def updateColor(self):
         for row in self.squares:
             for square in row:
-                if square.color == BLUE and (square.n == 3 or square.n == 2):
-                    square.color = BLUE
-                elif square.color == RED and square.n == 3:
-                    square.color = BLUE
+                if square.color == BLACK and (square.n == 3 or square.n == 2):
+                    square.color = BLACK
+                elif square.color == GRAY and square.n == 3:
+                    square.color = BLACK
                 else:
-                    square.color = RED
+                    square.color = GRAY
                 
     def update(self):
         self.calcNextDoor()
@@ -86,13 +86,13 @@ class Board:
 board = Board()
 
 offset = 20
-board.squares[0+offset][0+offset].color = BLUE
-board.squares[1+offset][0+offset].color = BLUE
-board.squares[2+offset][0+offset].color = BLUE
-board.squares[2+offset][1+offset].color = BLUE
-board.squares[1+offset][2+offset].color = BLUE
-# board.squares[21][20].color = BLUE
-# board.squares[31][21].color = BLUE
+board.squares[0+offset][0+offset].color = BLACK
+board.squares[1+offset][0+offset].color = BLACK
+board.squares[2+offset][0+offset].color = BLACK
+board.squares[2+offset][1+offset].color = BLACK
+board.squares[1+offset][2+offset].color = BLACK
+# board.squares[21][20].color = BLACK
+# board.squares[31][21].color = BLACK
 
 
 while not done:
