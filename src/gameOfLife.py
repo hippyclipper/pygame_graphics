@@ -110,7 +110,6 @@ def makeGliderGun(board):
 board = Board()
 makeGliderGun(board)
 
-
 while not done:
     
     for event in pygame.event.get():

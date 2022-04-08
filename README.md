@@ -16,3 +16,7 @@
 [Gravity](./src/gravity.py)
 
 ![gravity demo](./img/gravityGifDemo.gif)
+---
+[Game of Life](./src/gameOfLife.py)
+
+![Game of life demo](./img/gameOfLifeGif.gif)
