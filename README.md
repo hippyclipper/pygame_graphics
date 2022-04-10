@@ -23,4 +23,4 @@
 ---
 [Ray Cast](./src/RayCast.py)
 
-![Ray Cast demo](./img/RayTraceGif.gif)
+![Ray Cast demo](./img/rayTraceGif.gif)
