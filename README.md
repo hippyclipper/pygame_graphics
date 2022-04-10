@@ -20,3 +20,7 @@
 [Game of Life](./src/gameOfLife.py)
 
 ![Game of life demo](./img/gameOfLifeGif.gif)
+---
+[Ray Cast](./src/RayCast.py)
+
+![Ray Cast demo](./img/RayTraceGif.gif)

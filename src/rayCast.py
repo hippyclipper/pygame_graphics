@@ -42,17 +42,18 @@ class Wall:
         self.y1 = first[1]
         self.x2 = second[0]
         self.y2 = second[1]
-        self.lineWidth = 2
+        self.lineWidth = 6
+        self.color = (150, 150, 150)
                 
     def draw(self):
-        pygame.draw.line(screen, GREEN, (self.x1, self.y1), (self.x2, self.y2),self.lineWidth)
+        pygame.draw.line(screen, self.color, (self.x1, self.y1), (self.x2, self.y2),self.lineWidth)
         
 #=============================================================================
         
 class Ray:
     
     def __init__(self, x,y,rads):
-        self.scale = 200
+        self.scale = 1000
         self.x1 = x
         self.y1 = y
         self.x2 = x + (math.cos(rads)*self.scale)
@@ -60,6 +61,7 @@ class Ray:
         self.lineWidth = 2
         self.rads = rads
         self.contacts = []
+        self.color = (254, 254, 254)
         self.contact = None
 
                 
@@ -87,14 +89,17 @@ class Ray:
                     final = Pv
         self.contact = final
 
+
         #self.contacts = [dist[min(dist, key=dist.get)]]
         
 
         
     def draw(self):
         if not self.contact == None:
-            pygame.draw.circle(screen, GREEN, (self.contact[0], self.contact[1]), 10)
-        pygame.draw.line(screen, RED, (self.x1, self.y1), (self.x2, self.y2),self.lineWidth)
+            #pygame.draw.circle(screen, GREEN, (self.contact[0], self.contact[1]), 10)
+            pygame.draw.line(screen, self.color, (self.x1, self.y1), (self.contact[0], self.contact[1]),self.lineWidth)
+        else:
+            pygame.draw.line(screen, self.color, (self.x1, self.y1), (self.x2, self.y2),self.lineWidth)
         self.contacts = []
         self.contact = None
         
@@ -106,8 +111,9 @@ class Player:
         self.x = width // 2
         self.y = height // 2
         self.r = 10
-        self.numRays = 20
+        self.numRays = 50
         self.rays = []
+        self.color = (254, 254, 254)
         for ray in range(self.numRays):
             rads = math.radians((ray/self.numRays) * 360)
             self.rays.append(Ray(self.x, self.y, rads))
@@ -121,7 +127,7 @@ class Player:
     def draw(self):
         for ray in self.rays:
             ray.draw()
-        pygame.draw.circle(screen, RED, (self.x, self.y), self.r)
+        #pygame.draw.circle(screen, self.color, (self.x, self.y), self.r)
         
 #=============================================================================        
 
@@ -159,9 +165,11 @@ def contact(wall, ray):
 player = Player()
 walls = Walls()
 offset =  height//2
-offset1 =  offset + 20
-walls.addWall((10+offset,150+offset),(200+offset, 10+offset))
+offset1 =  offset + 100
+walls.addWall((100+offset,150-offset),(200+offset, 10+offset))
 walls.addWall((10+offset1,150+offset1),(200+offset1, 10+offset1))
+walls.addWall((100,150),(200+offset1, 200-offset1))
+walls.addWall((200-offset1,150+offset1),(200+offset1, 10+offset1))
 
 #=============================================================================
 
@@ -172,13 +180,13 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-            
+          
     for wall in walls.walls:
         for ray in player.rays:
             contact(wall, ray)
             
     walls.draw() 
-    player.update(x,y)
+    player.update(x,y) 
     player.draw()
             
     pygame.display.flip()
