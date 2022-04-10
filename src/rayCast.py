@@ -98,11 +98,43 @@ class Player:
             ray.draw()
         pygame.draw.circle(screen, RED, (self.x, self.y), self.r)
         
+#=============================================================================        
+
+def contact(wall, ray):
+    x1 = wall.x1
+    y1 = wall.y1
+    
+    x2 = wall.x2
+    y2 = wall.y2
+    
+    x3 = ray.x1
+    y3 = ray.y1
+    
+    x4 = ray.x2
+    y4 = ray.y2
+    
+    D = ((x1 - x2) * (y3-y4)) - ((y1 - y2) * (x3 - x4))
+    
+    if D == 0:
+        return
+    
+    t = (((x1-x3) * (y3-y4)) - ((y1-y3) * (x3-x4))) / D
+    u = (((x1-x3) * (y1-y2)) - ((y1-y3) * (x1-x2))) / D
+    
+    if not (0 <= t <= 1 and 0 <= u <= 1):
+        return
+    
+    Px = x1 + (t * (x2-x1))
+    Py = y1 + (t * (y2-y1))
+    
+    pygame.draw.circle(screen, RED, (Px, Py), 10)
+        
 #=============================================================================
         
 player = Player()
 walls = Walls()
-walls.addWall((10,150),(200, 10))
+offset =  height//2
+walls.addWall((10+offset,150+offset),(200+offset, 10+offset))
 
 #=============================================================================
 
@@ -112,7 +144,9 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-            
+    for wall in walls.walls:
+        for ray in player.rays:
+            contact(ray, wall)
     walls.draw() 
     player.update(x,y)
     player.draw()
