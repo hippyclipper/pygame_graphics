@@ -59,6 +59,9 @@ class Ray:
         self.y2 = y + (math.sin(rads)*self.scale)
         self.lineWidth = 2
         self.rads = rads
+        self.contacts = []
+        self.contact = None
+
                 
     def intersectionPoint(self, wall):
         yd = self.y2-self.y1
@@ -70,8 +73,30 @@ class Ray:
         self.x2 = x + (math.cos(self.rads)*self.scale)
         self.y2 = y + (math.sin(self.rads)*self.scale)
         
+        if len(self.contacts) == 0:
+            self.contact = None
+            return
+        
+        dist = pygame.math.Vector2(self.contacts[0][0], self.contacts[0][1]).distance_to((self.x1, self.y1))
+        final = [self.contacts[0][0], self.contacts[0][1]]
+        
+        if len(self.contacts) > 1: 
+            for Pv in self.contacts[1:]:                
+                if pygame.math.Vector2(Pv[0], Pv[1]).distance_to((self.x1, self.y1)) < dist:
+                    dist = pygame.math.Vector2(Pv[0], Pv[1]).distance_to((self.x1, self.y1))
+                    final = Pv
+        self.contact = final
+
+        #self.contacts = [dist[min(dist, key=dist.get)]]
+        
+
+        
     def draw(self):
+        if not self.contact == None:
+            pygame.draw.circle(screen, GREEN, (self.contact[0], self.contact[1]), 10)
         pygame.draw.line(screen, RED, (self.x1, self.y1), (self.x2, self.y2),self.lineWidth)
+        self.contacts = []
+        self.contact = None
         
 #=============================================================================
         
@@ -126,27 +151,32 @@ def contact(wall, ray):
     
     Px = x1 + (t * (x2-x1))
     Py = y1 + (t * (y2-y1))
-    
-    pygame.draw.circle(screen, RED, (Px, Py), 10)
+    ray.contacts.append([Px,Py])
+    #pygame.draw.circle(screen, BLUE, (Px, Py), 11)
         
 #=============================================================================
         
 player = Player()
 walls = Walls()
 offset =  height//2
+offset1 =  offset + 20
 walls.addWall((10+offset,150+offset),(200+offset, 10+offset))
+walls.addWall((10+offset1,150+offset1),(200+offset1, 10+offset1))
 
 #=============================================================================
 
 while not done:
     
     x, y = pygame.mouse.get_pos()
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+            
     for wall in walls.walls:
         for ray in player.rays:
-            contact(ray, wall)
+            contact(wall, ray)
+            
     walls.draw() 
     player.update(x,y)
     player.draw()
