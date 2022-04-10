@@ -21,6 +21,6 @@
 
 ![Game of life demo](./img/gameOfLifeGif.gif)
 ---
-[Ray Cast](./src/RayCast.py)
+[Ray Cast](./src/rayCast.py)
 
 ![Ray Cast demo](./img/rayTraceGif.gif)
