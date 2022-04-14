@@ -19,20 +19,32 @@ BACKGROUND = (5, 5, 5)
 COLORLIST = [RED, GREEN, BLUE]
 done = False
 
+
+
 class Square:
     
     def __init__(self,i,j,w):
-        self.x = i * w
-        self.y = j * w
+        self.x1 = i * w
+        self.y1 = j * w
+        self.scale = 10
+        self.rads = (45/360) * 2 * math.pi
+        self.x2 = self.x1 + (math.cos(self.rads) * self.scale)
+        self.y2 = self.y1 + (math.sin(self.rads) * self.scale)
         self.i = i
         self.j = j
         self.w = w
         self.color = GRAY
         self.n = 0
         
+    def update(self):
+        self.rads += .1
+        self.x2 = self.x1 + (math.cos(self.rads) * self.scale)
+        self.y2 = self.y1 + (math.sin(self.rads) * self.scale)
+        
     def draw(self):
-        pygame.draw.rect(screen,self.color,(self.x,self.y,self.w,self.w))
-        pygame.draw.circle(screen, RED, (self.x, self.y), 1)
+        pygame.draw.rect(screen,self.color,(self.x1,self.y1,self.w,self.w))
+        pygame.draw.circle(screen, RED, (self.x1, self.y1), 2)
+        pygame.draw.line(screen, GREEN, (self.x1, self.y1), (self.x2, self.y2), 1)
         
 
 class Board:
@@ -47,14 +59,17 @@ class Board:
                 self.squares[x].append(Square(x, y, self.sizeSquare))
                                 
     def update(self):
-        pass
+        for x in self.squares:
+            for y in x:
+                y.update()
     
     def draw(self):
         for x in self.squares:
             for y in x:
                 y.draw()
                 
-board = Board()                
+board = Board()
+
 while not done:
     
     for event in pygame.event.get():
