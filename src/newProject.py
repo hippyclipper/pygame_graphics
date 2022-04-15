@@ -1,6 +1,8 @@
 import pygame
 import random
 import math
+from perlin_noise import PerlinNoise
+
 
 screenScale = 8
 width = int(100 * screenScale)
@@ -19,6 +21,8 @@ BACKGROUND = (5, 5, 5)
 COLORLIST = [RED, GREEN, BLUE]
 done = False
 
+noise = PerlinNoise(octaves=2, seed=2)
+
 
 
 class Square:
@@ -26,8 +30,9 @@ class Square:
     def __init__(self,i,j,w):
         self.x1 = i * w
         self.y1 = j * w
-        self.scale = 10
-        self.rads = (45/360) * 2 * math.pi
+        self.scale = 20
+        self.z = 0
+        self.rads = noise([self.x1/width, self.y1/height, self.z]) * math.pi * 2
         self.x2 = self.x1 + (math.cos(self.rads) * self.scale)
         self.y2 = self.y1 + (math.sin(self.rads) * self.scale)
         self.i = i
@@ -37,21 +42,22 @@ class Square:
         self.n = 0
         
     def update(self):
-        self.rads += .1
+        self.z += .02
+        self.rads = noise([self.x1/width, self.y1/height, self.z]) * math.pi * 2
         self.x2 = self.x1 + (math.cos(self.rads) * self.scale)
         self.y2 = self.y1 + (math.sin(self.rads) * self.scale)
         
     def draw(self):
         pygame.draw.rect(screen,self.color,(self.x1,self.y1,self.w,self.w))
-        pygame.draw.circle(screen, RED, (self.x1, self.y1), 2)
-        pygame.draw.line(screen, GREEN, (self.x1, self.y1), (self.x2, self.y2), 1)
+        pygame.draw.circle(screen, RED, (self.x1, self.y1), 10)
+        pygame.draw.line(screen, GREEN, (self.x1, self.y1), (self.x2, self.y2), 3)
         
 
 class Board:
     
     def __init__(self):
         
-        self.sizeSquare = 20
+        self.sizeSquare = 50
         self.squares = []
         for x in range(width//self.sizeSquare):
             self.squares.append([])
