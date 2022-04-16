@@ -24,3 +24,7 @@
 [Ray Cast](./src/rayCast.py)
 
 ![Ray Cast demo](./img/rayTraceGif.gif)
+---
+[Noise Flow Field](./src/noiseFlowField.py)
+
+![Noise Flow Field demo](./img/flowFieldGif.gif)

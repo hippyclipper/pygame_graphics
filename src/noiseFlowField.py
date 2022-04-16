@@ -93,7 +93,7 @@ class Square:
         self.drawVector = False
         
     def update(self):     
-        self.z += .005
+        self.z += .01
         self.rads = -2 + noise([self.x1/width, self.y1/height, self.z]) * math.pi * 2
         
         self.x2 = self.x1 + (math.cos(self.rads) * self.scale)
