@@ -1,17 +1,13 @@
 #### Pygame graphics
 ##### by hippyclipper
 ---
-[Star Field](./src/starfield.py)
+[Noise Flow Field](./src/noiseFlowField.py)
 
-![star demo](./img/starfield_gif.gif)
+![Noise Flow Field demo](./img/flowField.gif)
 ---
-[Circles](./src/cirlces.py)
+[Ray Cast](./src/rayCast.py)
 
-![circle demo](./img/workingBigCircle.gif)
----
-[Fireworks](./src/fireworks.py)
-
-![circle demo](./img/fireworks.gif)
+![Ray Cast demo](./img/rayTraceGif.gif)
 ---
 [Gravity](./src/gravity.py)
 
@@ -21,10 +17,16 @@
 
 ![Game of life demo](./img/gameOfLifeGif.gif)
 ---
-[Ray Cast](./src/rayCast.py)
+[Circles](./src/cirlces.py)
 
-![Ray Cast demo](./img/rayTraceGif.gif)
+![circle demo](./img/workingBigCircle.gif)
 ---
-[Noise Flow Field](./src/noiseFlowField.py)
+[Fireworks](./src/fireworks.py)
 
-![Noise Flow Field demo](./img/flowField.gif)
+![Fireworks demo](./img/fireworks.gif)
+---
+[Star Field](./src/starfield.py)
+
+![star demo](./img/starfield_gif.gif)
+---
+
