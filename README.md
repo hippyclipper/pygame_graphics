@@ -27,4 +27,4 @@
 ---
 [Noise Flow Field](./src/noiseFlowField.py)
 
-![Noise Flow Field demo](./img/flowFieldGif.gif)
+![Noise Flow Field demo](./img/flowField.gif)
