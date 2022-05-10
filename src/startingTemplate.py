@@ -20,8 +20,18 @@ done = False
 while not done:
     
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
+        if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+            done = True           
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:           
+            pass     
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            pass
+        if event.type == pygame.KEYUP and event.key == pygame.K_UP:
+            pass      
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            pass
+        if event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
+            pass
             
     pygame.draw.circle(screen, RED, (width//2, height//2), 100)      
             
