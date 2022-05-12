@@ -3,29 +3,33 @@
 
 [Noise Flow Field](./src/noiseFlowField.py)
 
-![Noise Flow Field demo](./img/flowField.gif)
+<img src="./img/flowField.gif" alt="Noise Flow Field" width="300" height="300">
 
 [Ray Cast](./src/rayCast.py)
 
-![Ray Cast demo](./img/rayTraceGif.gif)
+<img src="./img/rayTraceGif.gif" alt="Ray Cast" width="300" height="300">
 
 [Gravity](./src/gravity.py)
 
-![gravity demo](./img/gravityGifDemo.gif)
+<img src="./img/gravityGifDemo.gif" alt="Gravity" width="300" height="300">
 
 [Game of Life](./src/gameOfLife.py)
 
-![Game of life demo](./img/gameOfLifeGif.gif)
+
+<img src="./img/gameOfLifeGif.gif" alt="Game of Life" width="300" height="300">
 
 [Circles](./src/cirlces.py)
 
-![circle demo](./img/workingBigCircle.gif)
+
+<img src="./img/workingBigCircle.gif" alt="Circles" width="300" height="300">
 
 [Fireworks](./src/fireworks.py)
 
-![Fireworks demo](./img/fireworks.gif)
+
+<img src="./img/fireworks.gif" alt="Fireworks" width="300" height="300">
 
 [Star Field](./src/starfield.py)
 
-![star demo](./img/starfield_gif.gif)
+
+<img src="./img/starfield_gif.gif" alt="Star Field" width="300" height="300">
 

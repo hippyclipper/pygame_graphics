@@ -34,7 +34,7 @@ class Pendulum:
         
     def update(self):
         self.seed += .05
-        self.scalar = math.sin(self.seed)
+        self.scalar = math.sin(self.seed) 
         self.x2 = self.x1 + (math.cos(self.rotation + (self.rads * self.scalar)) * self.d)          
         self.y2 = self.y1 + (math.sin(self.rotation + (self.rads * self.scalar)) * self.d)
     
