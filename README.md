@@ -3,7 +3,7 @@
 
 [Noise Flow Field](./src/noiseFlowField.py)
 
-<img src="./img/flowField.gif" alt="Noise Flow Field" width="300" height="300">
+https://user-images.githubusercontent.com/79437955/185469159-f192c48b-8b33-4c2f-ba2d-e0c7202636b8.mp4
 
 [Ray Cast](./src/rayCast.py)
 
